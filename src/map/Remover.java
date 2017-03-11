@@ -1,3 +1,5 @@
+package map;
+
 public class Remover implements Runnable {
 
     private CacheMap map;

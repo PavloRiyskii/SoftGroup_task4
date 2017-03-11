@@ -1,4 +1,5 @@
-import java.util.Map;
+package map;
+
 import java.util.Map.Entry;
 /**
  * Created by pavlo on 09.03.17.

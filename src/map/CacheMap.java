@@ -1,3 +1,5 @@
+package map;
+
 import java.util.*;
 
 /**
@@ -92,6 +94,9 @@ public abstract class CacheMap implements Map {
      */
     @Override
     public Object put(Object key, Object value) {
+        if(key == null) {
+            throw new NullPointerException();
+        }
         MapElement elem = new MapElement(key, value);
         Thread t = new Thread(elem);
         t.start();
