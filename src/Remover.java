@@ -1,6 +1,3 @@
-/**
- * Created by pavlo on 11.03.17.
- */
 public class Remover implements Runnable {
 
     private CacheMap map;
@@ -9,6 +6,9 @@ public class Remover implements Runnable {
         this.map = map;
     }
 
+    /**
+     * Method for removing old object from map
+     */
     @Override
     public void run() {
         while(true) {

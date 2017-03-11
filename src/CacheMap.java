@@ -1,7 +1,8 @@
 import java.util.*;
 
 /**
- * Created by pavlo on 09.03.17.
+ * @author pavlo716@gmail.com
+ * @version 1.0
  */
 public abstract class CacheMap implements Map {
     private List<MapElement> elements;
@@ -14,16 +15,29 @@ public abstract class CacheMap implements Map {
         t.start();
     }
 
+    /**
+     *
+     * @return number of element in the map
+     */
     @Override
     public int size() {
         return elements.size();
     }
 
+    /**
+     *
+     * @return true if map is empty and false if not
+     */
     @Override
     public boolean isEmpty() {
         return elements.isEmpty();
     }
 
+    /**
+     *
+     * @param key
+     * @return true if there are pair vith such key
+     */
     @Override
     public boolean containsKey(Object key) {
         ListIterator<MapElement> iter = elements.listIterator();
@@ -36,6 +50,11 @@ public abstract class CacheMap implements Map {
         return false;
     }
 
+    /**
+     *
+     * @param value
+     * @return true if there are pair vith such value
+     */
     @Override
     public boolean containsValue(Object value) {
         ListIterator<MapElement> iter = elements.listIterator();
@@ -48,6 +67,11 @@ public abstract class CacheMap implements Map {
         return false;
     }
 
+    /**
+     *
+     * @param key
+     * @return the value from map vith such key or null if there are no such key
+     */
     @Override
     public Object get(Object key) {
         ListIterator<MapElement> iter = elements.listIterator();
@@ -60,6 +84,12 @@ public abstract class CacheMap implements Map {
         return null;
     }
 
+
+    /**
+     *
+     * @param key the value of key
+     * @param value the value of value
+     */
     @Override
     public Object put(Object key, Object value) {
         MapElement elem = new MapElement(key, value);
@@ -69,6 +99,13 @@ public abstract class CacheMap implements Map {
         return elem;
     }
 
+    /**
+     *
+     * @param key the value of key
+     * @param value the value of value
+     * @param lifeTime the evalue of life time of the pair
+     * @return
+     */
     public Object put(Object key, Object value, int lifeTime) {
         MapElement elem = new MapElement(key, value, lifeTime);
         Thread t = new Thread(elem);
@@ -78,7 +115,11 @@ public abstract class CacheMap implements Map {
     }
 
 
-
+    /**
+     *
+     * @param key remove the pair vith such key
+     * @return the value from removed pair
+     */
     @Override
     public Object remove(Object key) {
         Object elem =  get(key);
@@ -86,6 +127,11 @@ public abstract class CacheMap implements Map {
         return elem;
     }
 
+
+    /**
+     *
+     * @param m the method for inserting the map of value into that map
+     */
     @Override
     public void putAll(Map m) {
         Set set = m.keySet();
@@ -100,11 +146,18 @@ public abstract class CacheMap implements Map {
         }
     }
 
+    /**
+     * clean the whole map
+     */
     @Override
     public void clear() {
         this.elements = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return HashSet of keys
+     */
     @Override
     public Set keySet() {
         Set keys = new HashSet();
@@ -115,6 +168,10 @@ public abstract class CacheMap implements Map {
         return keys;
     }
 
+    /**
+     *
+     * @return the collection of values
+     */
     @Override
     public Collection values() {
         Collection colection = new ArrayList();
@@ -136,8 +193,15 @@ public abstract class CacheMap implements Map {
         return set;
     }
 
+    /**
+     * The method for removing the old object from map
+     */
     public abstract void removeOld();
 
+    /**
+     *
+     * @return the list of Entry
+     */
     protected List<MapElement> getElementsList() {
         return this.elements;
     }

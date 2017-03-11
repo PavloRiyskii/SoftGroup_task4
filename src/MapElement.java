@@ -56,6 +56,9 @@ public class MapElement implements Runnable, Entry {
         this.time = time;
     }
 
+    /**
+     * Method for controll of life circle of the the current object
+     */
     @Override
     public void run(){
         while(time > 0) {
